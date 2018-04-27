@@ -1,2 +1,7 @@
 *.hex
 *.lst
+
+PSoC/Display Driver/Display Driver.cydsn/Generated_Source/
+PSoC/Display Driver/Display Driver.cydsn/codegentemp
+PSoC/Display Driver/Display Driver.cydsn/CortexM3
+PSoC/Display Driver/Display Driver.cydsn/BUILD.log
