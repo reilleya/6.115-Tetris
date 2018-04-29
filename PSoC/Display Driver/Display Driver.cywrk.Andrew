@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Display Driver">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>Display Driver</v>
 <v>Display Driver\Display Driver</v>
@@ -205,7 +205,18 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v=".\Display Driver.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\Display Driver.cydsn\main.c" />
+<name v=".\Display Driver.cydsn\Display Driver.cydwr" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1237, 1072" SelectedTabbedMdiWindow="9ca33c12-7022-4952-81cb-d15ce2c9d376"><DocumentWindow Key="D:\Homework\6.115\Final Project\Tetris\PSoC\Display Driver\Display Driver.cydsn\TopDesign\TopDesign.cysch" Guid="8bd17af3-aa93-49e0-ac4f-d803792a31a9" /><DocumentWindow Key="D:\Homework\6.115\Final Project\Tetris\PSoC\Display Driver\Display Driver.cydsn\main.c" Guid="9ca33c12-7022-4952-81cb-d15ce2c9d376" /><DocumentWindow Key="D:\Homework\6.115\Final Project\Tetris\PSoC\Display Driver\Display Driver.cydsn\Display Driver.cydwr" Guid="52fdd911-ee94-43b2-bc2e-113cfd59a442" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
