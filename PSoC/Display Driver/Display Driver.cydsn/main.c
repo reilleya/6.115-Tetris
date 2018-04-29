@@ -39,14 +39,15 @@ static const unsigned char table[] = {
 
 uint8_t back[16];
 uint8_t front[16] = {
-                        0b10000000,
-                        0b01000000,
-                        0b00100000,
                         0b00010000,
-                        0b00100000,
-                        0b01000000,
-                        0b10000000,
-                        0b01000000,
+                        0b00010000,
+                        0b00010000,
+                        0b00011000,
+                        0b00000000,
+                        0b00000000,
+                        0b00110110,
+                        0b00110110,
+    
                         0b00000000,
                         0b00000000,
                         0b00000000,
@@ -59,14 +60,24 @@ uint8_t front[16] = {
 
 uint8_t r = 0;
 
-void rowEnable(uint8_t row){
+void rowEnable(uint8_t row) {
     spi_1_g_Write(1);
     SPIM_1_WriteTxData(pow(2, row));
-    CyDelay(1);
+    //while(!(SPIM_1_ReadTxStatus() & SPIM_1_STS_SPI_DONE));
+    //CyDelay(1);
+    CyDelayUs(50);
     spi_1_rck_Write(1);
     spi_1_rck_Write(0);
     spi_1_g_Write(0);
+}
+
+void writeCol(uint8_t val) {
+    SPIM_2_WriteTxData(val);
+    //while(!(SPIM_2_ReadTxStatus() & SPIM_2_STS_SPI_DONE));
     //CyDelay(1);
+    CyDelayUs(50);
+    spi_2_rck_Write(1);
+    spi_2_rck_Write(0);
 }
 
 int main(void) {
@@ -90,20 +101,13 @@ int main(void) {
     //spi_2_oe_Write(0);
     //CyDelay(1);
     
-    for(;;) {
-        //led_Write(~led_Read());
-        //CyDelay(250);
-        
+    for(;;) {        
         rowEnable(r);
         
-        //for(int x = 7; x >= 0; x--) {
-            spi_2_rck_Write(0);
-            //CyDelay(1);
-            SPIM_2_WriteTxData(table[front[r]]);
-            CyDelay(1);
-            spi_2_rck_Write(1);
-            spi_2_rck_Write(0);
-        //}
+        for(int x = 0; x < 8; x++) {
+            writeCol((uint8_t)pow(2, x) & table[front[r]]);
+            //CyDelay(250);
+        }
         
         r += 1;
         if(r == 8) r = 0;
