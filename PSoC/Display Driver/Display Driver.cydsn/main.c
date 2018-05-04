@@ -2,7 +2,7 @@
 #include "math.h"
 
 
-static const unsigned char table[] = {
+static const unsigned char reverseByte[] = {
         0x00, 0x80, 0x40, 0xc0, 0x20, 0xa0, 0x60, 0xe0,
         0x10, 0x90, 0x50, 0xd0, 0x30, 0xb0, 0x70, 0xf0,
         0x08, 0x88, 0x48, 0xc8, 0x28, 0xa8, 0x68, 0xe8,
@@ -39,45 +39,57 @@ static const unsigned char table[] = {
 
 uint8_t back[16];
 uint8_t front[16] = {
-                        0b00010000,
-                        0b00010000,
-                        0b00010000,
-                        0b00011000,
                         0b00000000,
                         0b00000000,
-                        0b00110110,
-                        0b00110110,
+                        0b00000000,
+                        0b00000000,
+                        0b00001100,
+                        0b00001100,
+                        0b00000000,
+                        0b00000000,
     
                         0b00000000,
                         0b00000000,
                         0b00000000,
                         0b00000000,
-                        0b00000000,
-                        0b00000000,
-                        0b00000000,
-                        0b00000000
+                        0b00000010,
+                        0b00000010,
+                        0b00110010,
+                        0b00110011
                     };
 
 uint8_t r = 0;
 
 void rowEnable(uint8_t row) {
-    spi_1_g_Write(1);
-    SPIM_1_WriteTxData(pow(2, row));
-    //while(!(SPIM_1_ReadTxStatus() & SPIM_1_STS_SPI_DONE));
-    //CyDelay(1);
-    CyDelayUs(50);
-    spi_1_rck_Write(1);
-    spi_1_rck_Write(0);
-    spi_1_g_Write(0);
+    if(row < 8) {
+        spi_3_g_Write(1);
+        spi_1_g_Write(1);
+        SPIM_1_WriteTxData(pow(2, row));
+        //while(!(SPIM_1_ReadTxStatus() & SPIM_1_STS_SPI_DONE));
+        CyDelayUs(10);
+        spi_1_rck_Write(1);
+        spi_1_rck_Write(0);
+        spi_1_g_Write(0);
+    }
+    else {
+        spi_1_g_Write(1);
+        spi_3_g_Write(1);
+        SPIM_3_WriteTxData(pow(2, row - 8));
+        //while(!(SPIM_1_ReadTxStatus() & SPIM_1_STS_SPI_DONE));
+        CyDelayUs(10);
+        spi_3_rck_Write(1);
+        spi_3_rck_Write(0);
+        spi_3_g_Write(0);
+    }
 }
 
 void writeCol(uint8_t val) {
     SPIM_2_WriteTxData(val);
+    SPIM_2_WriteTxData(val);
     //while(!(SPIM_2_ReadTxStatus() & SPIM_2_STS_SPI_DONE));
-    //CyDelay(1);
-    CyDelayUs(50);
+    CyDelayUs(5);
     spi_2_rck_Write(1);
-    spi_2_rck_Write(0);
+    spi_2_rck_Write(0); 
 }
 
 int main(void) {
@@ -86,31 +98,37 @@ int main(void) {
     SPIM_1_Start();
     SPIM_1_EnableTxInt();
     
-    spi_1_srclr_Write(1);
-    spi_1_rck_Write(0);
-    
     SPIM_2_Start();
     SPIM_2_EnableTxInt();
 
+    SPIM_3_Start();
+    SPIM_3_EnableTxInt();
+    
     CyDelay(10);
+    
+    spi_1_srclr_Write(1);
+    spi_1_rck_Write(0);
     
     spi_2_oe_Write(0);
     spi_2_srclr_Write(1);
     
-    //spi_2_rck_Write(0);
-    //spi_2_oe_Write(0);
-    //CyDelay(1);
+    spi_3_srclr_Write(1);
+    spi_3_rck_Write(0);
     
-    for(;;) {        
+    
+    for(;;) {
         rowEnable(r);
         
         for(int x = 0; x < 8; x++) {
-            writeCol((uint8_t)pow(2, x) & table[front[r]]);
+            writeCol((uint8_t)pow(2, x) & reverseByte[front[r]]);
             //CyDelay(250);
         }
         
         r += 1;
-        if(r == 8) r = 0;
+        if(r == 16) {
+            r = 0;
+            writeCol(0);
+        }
     }
 }
 

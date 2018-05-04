@@ -150,6 +150,34 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_2_miso.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_2_IntClock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_2_IntClock.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_3_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_3_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_3_PVT.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_g_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_g.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_g.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_srclr_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_srclr.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_srclr.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_rck_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_rck.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_rck.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_mosi_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_mosi.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_mosi.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_clk_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_clk.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_clk.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_ss_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_ss.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_ss.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_miso_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_miso.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\spi_3_miso.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_3_IntClock.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\SPIM_3_IntClock.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="D:\Homework\6.115\Final Project\Tetris\PSoC\Display Driver\Display Driver.cydsn\Export\ARM_GCC_Generic">

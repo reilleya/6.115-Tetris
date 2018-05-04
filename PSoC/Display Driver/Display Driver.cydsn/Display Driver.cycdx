@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="spi_2_ss" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_2_oe" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_2_mosi" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_2_clk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_2_srclr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_2_rck" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_2_miso" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SPIM_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+  <block name="SPIM_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -17,8 +8,22 @@
     <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="BSPIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
-  <block name="spi_1_mosi" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_3_g" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_3_srclr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_2_srclr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_2_rck" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_2_miso" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_3_rck" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_3_miso" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_3_mosi" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_3_clk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_3_ss" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_2_oe" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="spi_1_miso" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_1_clk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_1_ss" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="spi_1_g" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SPIM_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -28,9 +33,19 @@
     <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="BSPIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
-  <block name="spi_1_clk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_1_mosi" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_1_srclr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_2_mosi" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_2_clk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="spi_2_ss" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="spi_1_rck" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="led" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_1_ss" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="spi_1_srclr" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SPIM_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="BSPIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  </block>
 </blockRegMap>
