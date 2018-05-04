@@ -1,5 +1,6 @@
 *.hex
 *.lst
+*.log
 
 PSoC/Display Driver/Display Driver.cydsn/Generated_Source/
 PSoC/Display Driver/Display Driver.cydsn/codegentemp
