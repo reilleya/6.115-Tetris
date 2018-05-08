@@ -48,9 +48,26 @@ update:
     sjmp freeze
     
     checkcol:
+        mov R0, 42h
+        mov A, #30h
+        add A, R0
+        mov R0, A
         
+        mov R2, #0h
+        mov R1, #60h                ; Sample part start
+        copypart3:
+            mov A, @R1                  ; Read in current row of current part
+            anl A, @R0                  ; OR the row of the part with the FB row
+            cjne A, #0h, decfreeze
+            mov @R0, A
+            inc R0
+            inc R1
+            inc R2
+            cjne R2, #04h, copypart3
         sjmp updateend
     
+    decfreeze:
+        dec 42h
     freeze:
         ; Grabs the relevant row from the game frame buffer
         mov R0, 42h
