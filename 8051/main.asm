@@ -57,6 +57,10 @@ update:
         mov R1, #60h                ; Sample part start
         copypart3:
             mov A, @R1                  ; Read in current row of current part
+            mov R3, 41h
+            ls3:
+                rl A
+                djnz R3, ls3
             anl A, @R0                  ; OR the row of the part with the FB row
             cjne A, #0h, decfreeze
             mov @R0, A
@@ -79,6 +83,10 @@ update:
         mov R1, #60h                ; Sample part start
         copypart2:
             mov A, @R1                  ; Read in current row of current part
+            mov R3, 41h
+            ls2:
+                rl A
+                djnz R3, ls2
             orl A, @R0                  ; OR the row of the part with the FB row
             mov @R0, A
             inc R0
@@ -113,6 +121,10 @@ draw:
     mov R1, #60h                ; Sample part start
     copypart:
         mov A, @R1                  ; Read in current row of current part
+        mov R3, 41h
+        ls:
+            rl A
+            djnz R3, ls
         orl A, @R0                  ; OR the row of the part with the FB row
         mov @R0, A
         inc R0
@@ -175,15 +187,15 @@ setupboard:
         djnz R1, setrowbs
     
     mov 40h, #0h                ; Set part type to 0
-    mov 41h, #4h                ; Set part x to 4
+    mov 41h, #0h                ; Set part x to 4
     mov 42h, #0h                ; Set part y to 0
     
     mov 43h, #0h                ; Set tick to 0
     
     mov 60h, #0b00000000        ; Sample part
-    mov 61h, #0b00010000
-    mov 62h, #0b00010000
-    mov 63h, #0b00011000
+    mov 61h, #0b00000010
+    mov 62h, #0b00000010
+    mov 63h, #0b00000011
     
     ret
     
