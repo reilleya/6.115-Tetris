@@ -31,7 +31,6 @@ wait:
         djnz R1, delay
         mov R0, #0FFh
         mov R1, #0FFh
-        mov P1, R2
         djnz R2, delay
     ret
     
@@ -63,7 +62,6 @@ update:
                 djnz R3, ls3
             anl A, @R0                  ; OR the row of the part with the FB row
             cjne A, #0h, decfreeze
-            mov @R0, A
             inc R0
             inc R1
             inc R2
