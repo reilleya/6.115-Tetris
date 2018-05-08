@@ -1,3 +1,5 @@
+.equ	rand8reg, 45h
+
 .org 000h
     ljmp start
     
@@ -36,7 +38,10 @@ wait:
     
 addpart:
     mov 40h, #0h                ; Set part type to 0
-    mov 41h, #4h                ; Set part x to 4
+    lcall rand8
+    mov B, #28h
+    div AB
+    mov 41h, A                  ; Set part x to 4
     mov 42h, #0h                ; Set part y to 0
     ret
 
@@ -196,4 +201,15 @@ setupboard:
     mov 63h, #0b00000011
     
     ret
+    
+rand8:	mov	a, rand8reg
+	jnz	rand8b
+	cpl	a
+	mov	rand8reg, a
+rand8b:	anl	a, #10111000b
+	mov	c, p
+	mov	a, rand8reg
+	rlc	a
+	mov	rand8reg, a
+	ret
     
