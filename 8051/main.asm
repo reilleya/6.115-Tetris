@@ -65,31 +65,30 @@ addpart:
 
 update:
     inc 42h
-    mov R0, #42h
-    cjne @R0, #00Ch, checkcol     ; Check if we hit the bottom
-    sjmp freeze
     
-    checkcol:
-        mov R0, 42h
-        mov A, #30h
-        add A, R0
-        mov R0, A
-        
-        mov R2, #0h
-        mov R1, #60h                ; Sample part start
-        copypart3:
-            mov A, @R1                  ; Read in current row of current part
-            mov R3, 41h
-            ls3:
-                rl A
-                djnz R3, ls3
-            anl A, @R0                  ; OR the row of the part with the FB row
-            cjne A, #0h, decfreeze
-            inc R0
-            inc R1
-            inc R2
-            cjne R2, #04h, copypart3
-        sjmp updateend
+    mov R0, 42h
+    mov A, #30h
+    add A, R0
+    mov R0, A
+    
+    mov R2, #0h
+    mov R1, #60h                ; Sample part start
+    copypart3:
+        mov A, @R1                  ; Read in current row of current part
+        mov R3, 41h
+        ls3:
+            rl A
+            djnz R3, ls3
+        anl A, @R0                  ; OR the row of the part with the FB row
+        cjne A, #0h, decfreeze
+        inc R0
+        inc R1
+        inc R2
+        cjne R2, #04h, copypart3
+    
+    mov R0, #42h
+    cjne @R0, #00Ch, updateend     ; Check if we hit the bottom
+    sjmp freeze
     
     decfreeze:
         dec 42h
