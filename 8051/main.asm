@@ -59,7 +59,10 @@ addpart:
     div AB
     mov 40h, B                ; Set part type to 0
     lcall getpart
-    mov 41h, #2h                ; Set part x to 4
+    lcall rand8
+    mov B, 65h
+    div AB
+    mov 41h, B                ; Set part x to 4
     mov 42h, #0h                ; Set part y to 0
     ret
 
@@ -160,8 +163,8 @@ draw:
         lcall sndchr
         inc R0
         djnz R1, row
-    mov A, #0ah
-    lcall sndchr
+    ;mov A, #0ah
+    ;lcall sndchr
     ret
     
 initser:                        ; Sets up serial port timer for 9600 baud
