@@ -1,4 +1,4 @@
-.equ	rand8reg, 45h
+.equ    rand8reg, 45h
 
 .org 000h
     ljmp start
@@ -9,6 +9,7 @@
     
 .org 100h
 start:
+    mov rand8reg, #0AEh          ; Seed random
     lcall initser
     lcall setupboard
     loop:                       ; Main loop
@@ -36,12 +37,29 @@ wait:
         djnz R2, delay
     ret
     
+getpart:
+    mov R0, #0h
+    mov R1, #60h
+    mov DPTR, #800h
+    loadpartbyte:
+        mov A, 40h
+        mov B, #6h
+        mul AB
+        add A, R0
+        movc a, @a+dptr
+        mov @R1, A
+        inc R0
+        inc R1
+        cjne R0, #6h, loadpartbyte
+    ret
+    
 addpart:
-    mov 40h, #0h                ; Set part type to 0
     lcall rand8
-    mov B, #28h
+    mov B, #12h
     div AB
-    mov 41h, A                  ; Set part x to 4
+    mov 40h, B                ; Set part type to 0
+    lcall getpart
+    mov 41h, #2h                ; Set part x to 4
     mov 42h, #0h                ; Set part y to 0
     ret
 
@@ -189,16 +207,7 @@ setupboard:
         inc R0
         djnz R1, setrowbs
     
-    mov 40h, #0h                ; Set part type to 0
-    mov 41h, #0h                ; Set part x to 4
-    mov 42h, #0h                ; Set part y to 0
-    
-    mov 43h, #0h                ; Set tick to 0
-    
-    mov 60h, #0b00000000        ; Sample part
-    mov 61h, #0b00000010
-    mov 62h, #0b00000010
-    mov 63h, #0b00000011
+    lcall addpart
     
     ret
     
@@ -212,4 +221,151 @@ rand8b:	anl	a, #10111000b
 	rlc	a
 	mov	rand8reg, a
 	ret
+
+.org 800h    
+parts:
+    ; Part 0, L
+    .db 0b00000000
+    .db 0b00000010
+    .db 0b00000010
+    .db 0b00000011
+    .db 0x1
+    .db 0x6
+    ; Part 1, L
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000111
+    .db 0b00000100
+    .db 0x2
+    .db 0x5
+    ; Part 2, L
+    .db 0b00000000
+    .db 0b00000011
+    .db 0b00000001
+    .db 0b00000001
+    .db 0x3
+    .db 0x6
+    ; Part 3, L
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000001
+    .db 0b00000111
+    .db 0x0
+    .db 0x6
+    
+    
+    ; Part 4, fL
+    .db 0b00000000
+    .db 0b00000001
+    .db 0b00000001
+    .db 0b00000011
+    .db 0x5
+    .db 0x6
+    ; Part 5, fL
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000100
+    .db 0b00000111
+    .db 0x6
+    .db 0x5
+    ; Part 6, fL
+    .db 0b00000000
+    .db 0b00000011
+    .db 0b00000010
+    .db 0b00000010
+    .db 0x7
+    .db 0x6
+    ; Part 7, fL
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000111
+    .db 0b00000001
+    .db 0x4
+    .db 0x5
+    
+    
+    ; Part 8, I
+    .db 0b00000001
+    .db 0b00000001
+    .db 0b00000001
+    .db 0b00000001
+    .db 0x9
+    .db 0x7
+    ; Part 9, I
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00001111
+    .db 0x8
+    .db 0x4
+    
+    
+    ; Part 10, B
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000011
+    .db 0b00000011
+    .db 0xA
+    .db 0x6
+    
+    
+    ; Part 11, S
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000011
+    .db 0b00000110
+    .db 0xC
+    .db 0x5
+    ; Part 12, S
+    .db 0b00000000
+    .db 0b00000010
+    .db 0b00000011
+    .db 0b00000001
+    .db 0xB
+    .db 0x6
+    
+    
+    ; Part 13, T
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000010
+    .db 0b00000111
+    .db 0xE
+    .db 0x5
+    ; Part 14, T
+    .db 0b00000000
+    .db 0b00000010
+    .db 0b00000011
+    .db 0b00000010
+    .db 0xF
+    .db 0x6
+    ; Part 15, T
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000111
+    .db 0b00000010
+    .db 0x10
+    .db 0x5
+    ; Part 16, T
+    .db 0b00000000
+    .db 0b00000001
+    .db 0b00000011
+    .db 0b00000001
+    .db 0xB
+    .db 0x6
+    
+    ; Part 17, Z
+    .db 0b00000000
+    .db 0b00000000
+    .db 0b00000110
+    .db 0b00000011
+    .db 0x12
+    .db 0x5
+    ; Part 18, Z
+    .db 0b00000000
+    .db 0b00000001
+    .db 0b00000011
+    .db 0b00000010
+    .db 0x11
+    .db 0x6
     
