@@ -43,14 +43,14 @@ getpart:
     mov DPTR, #800h
     loadpartbyte:
         mov A, 40h
-        mov B, #6h
+        mov B, #7h
         mul AB
         add A, R0
         movc a, @a+dptr
         mov @R1, A
         inc R0
         inc R1
-        cjne R0, #6h, loadpartbyte
+        cjne R0, #7h, loadpartbyte
     ret
     
 addpart:
@@ -230,6 +230,7 @@ parts:
     .db 0b00000011
     .db 0x1
     .db 0x6
+    .db 0x1
     ; Part 1, L
     .db 0b00000000
     .db 0b00000000
@@ -237,6 +238,7 @@ parts:
     .db 0b00000100
     .db 0x2
     .db 0x5
+    .db 0x2
     ; Part 2, L
     .db 0b00000000
     .db 0b00000011
@@ -244,6 +246,7 @@ parts:
     .db 0b00000001
     .db 0x3
     .db 0x6
+    .db 0x1
     ; Part 3, L
     .db 0b00000000
     .db 0b00000000
@@ -251,6 +254,7 @@ parts:
     .db 0b00000111
     .db 0x0
     .db 0x6
+    .db 0x2
     
     
     ; Part 4, fL
@@ -260,6 +264,7 @@ parts:
     .db 0b00000011
     .db 0x5
     .db 0x6
+    .db 0x1
     ; Part 5, fL
     .db 0b00000000
     .db 0b00000000
@@ -267,6 +272,7 @@ parts:
     .db 0b00000111
     .db 0x6
     .db 0x5
+    .db 0x2
     ; Part 6, fL
     .db 0b00000000
     .db 0b00000011
@@ -274,6 +280,7 @@ parts:
     .db 0b00000010
     .db 0x7
     .db 0x6
+    .db 0x1
     ; Part 7, fL
     .db 0b00000000
     .db 0b00000000
@@ -281,6 +288,7 @@ parts:
     .db 0b00000001
     .db 0x4
     .db 0x5
+    .db 0x2
     
     
     ; Part 8, I
@@ -290,6 +298,7 @@ parts:
     .db 0b00000001
     .db 0x9
     .db 0x7
+    .db 0x0
     ; Part 9, I
     .db 0b00000000
     .db 0b00000000
@@ -297,6 +306,7 @@ parts:
     .db 0b00001111
     .db 0x8
     .db 0x4
+    .db 0x3
     
     
     ; Part 10, B
@@ -306,6 +316,7 @@ parts:
     .db 0b00000011
     .db 0xA
     .db 0x6
+    .db 0x2
     
     
     ; Part 11, S
@@ -315,6 +326,7 @@ parts:
     .db 0b00000110
     .db 0xC
     .db 0x5
+    .db 0x2
     ; Part 12, S
     .db 0b00000000
     .db 0b00000010
@@ -322,6 +334,7 @@ parts:
     .db 0b00000001
     .db 0xB
     .db 0x6
+    .db 0x1
     
     
     ; Part 13, T
@@ -331,6 +344,7 @@ parts:
     .db 0b00000111
     .db 0xE
     .db 0x5
+    .db 0x2
     ; Part 14, T
     .db 0b00000000
     .db 0b00000010
@@ -338,6 +352,7 @@ parts:
     .db 0b00000010
     .db 0xF
     .db 0x6
+    .db 0x1
     ; Part 15, T
     .db 0b00000000
     .db 0b00000000
@@ -345,6 +360,7 @@ parts:
     .db 0b00000010
     .db 0x10
     .db 0x5
+    .db 0x2
     ; Part 16, T
     .db 0b00000000
     .db 0b00000001
@@ -352,6 +368,7 @@ parts:
     .db 0b00000001
     .db 0xB
     .db 0x6
+    .db 0x1
     
     ; Part 17, Z
     .db 0b00000000
@@ -360,6 +377,7 @@ parts:
     .db 0b00000011
     .db 0x12
     .db 0x5
+    .db 0x2
     ; Part 18, Z
     .db 0b00000000
     .db 0b00000001
@@ -367,4 +385,5 @@ parts:
     .db 0b00000010
     .db 0x11
     .db 0x6
+    .db 0x1
     
