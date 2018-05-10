@@ -9,6 +9,8 @@
     
 .org 100h
 start:
+    mov P1, 0FFh
+    mov P3, 0FFh
     mov rand8reg, #0AEh          ; Seed random
     lcall initser
     lcall setupboard
@@ -25,17 +27,58 @@ tick:
     ret
         
 wait:
-    mov R0, #0FFh
-    mov R1, #0FFh
-    mov R2, #00Bh
+    mov R4, #0FFh
+    mov R5, #0FFh
+    mov R6, #00Bh
     delay:
-        djnz R0, delay
-        mov R0, #0FFh
-        djnz R1, delay
-        mov R0, #0FFh
-        mov R1, #0FFh
-        djnz R2, delay
+        djnz R4, delay
+        mov R4, #0FFh
+        lcall checkinp
+        djnz R5, delay
+        mov R4, #0FFh
+        mov R5, #0FFh
+        djnz R6, delay
     ret
+    
+checkinp:
+    jnb P3.2, notpressed
+    jb 40h, donecheck
+    setb 40h
+    
+    jb P1.0, checkleft
+    jb P1.1, checkright
+    jb P1.2, checkrot
+    sjmp donecheck
+    
+    checkleft:
+        mov A, 41h
+        cjne A, 65h, moveleft
+        sjmp donecheck
+        moveleft:
+        inc 41h
+        lcall draw
+        sjmp donecheck
+    
+    checkright:
+        mov A, 41h
+        cjne A, #0h, moveright
+        sjmp donecheck
+        moveright:
+        dec 41h
+        lcall draw
+        sjmp donecheck
+    
+    checkrot:
+        mov R0, #40h
+        mov @R0, 64h
+        lcall getpart
+        lcall draw
+        sjmp donecheck
+    
+    notpressed:
+        clr 40h
+    donecheck:
+        ret
     
 getpart:
     mov R0, #0h
@@ -125,7 +168,7 @@ update:
 draw:
     ; Moves the contents of the game state buffer into the frame buffer
     mov R0, #30h
-    mov R1, #20h
+    mov R1, #50h
     mov R2, #10h
     copyrow:
         mov A, @R0
@@ -136,7 +179,7 @@ draw:
     
     ; Grabs the relevant row from the game frame buffer
     mov R0, 42h
-    mov A, #20h
+    mov A, #50h
     add A, R0
     mov R0, A
     
@@ -156,7 +199,7 @@ draw:
         cjne R2, #04h, copypart
     
 
-    mov R0, #20h
+    mov R0, #50h
     mov R1, #10h
     row:
         mov A, @R0
@@ -196,7 +239,7 @@ sndchr:                         ; Prints the char in A out on the serial port
     ret
 
 setupboard:
-    mov R0, #20h
+    mov R0, #50h
     mov R1, #10h
     setrowfb:
         mov @R0, #0b00000000
@@ -256,7 +299,7 @@ parts:
     .db 0b00000001
     .db 0b00000111
     .db 0x0
-    .db 0x6
+    .db 0x5
     .db 0x2
     
     
