@@ -45,11 +45,14 @@ checkinp:
     jb 40h, donecheck
     setb 40h
     
-    jb P1.0, checkleft
-    jb P1.1, checkright
-    jb P1.2, checkrot
+    jb P3.4, checkdouble
+    jb P3.3, checkleft
     sjmp donecheck
     
+    checkdouble:
+        jb P3.3, checkright
+        sjmp checkrot
+
     checkleft:
         mov A, 41h
         cjne A, 65h, moveleft
