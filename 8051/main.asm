@@ -163,6 +163,26 @@ update:
     
     updateend:
     
+    mov R0, #30h
+    mov R2, #10h
+    checkrow:
+        cjne @R0, #0FFh, notfull
+        mov @R0, #0h
+        mov 3, 0
+        mov 1, 0
+        dec R1
+        
+        moverow:
+            mov A, @R1
+            mov @R0, A
+            dec R0
+            dec R1
+            cjne R1, #2Fh, moverow
+        
+        mov 0, 3    
+        notfull:
+            inc R0
+            djnz R2, checkrow 
     ret
 
 draw:
@@ -412,7 +432,7 @@ parts:
     .db 0b00000001
     .db 0b00000011
     .db 0b00000001
-    .db 0xB
+    .db 0xD
     .db 0x6
     .db 0x1
     
