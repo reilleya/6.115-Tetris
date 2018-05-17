@@ -3,15 +3,12 @@
 .org 000h
     ljmp start
     
-.org 0bh
-    lcall tick
-	reti
-    
 .org 100h
 start:
     mov P1, 0FFh
     mov P3, 0FFh
-    mov rand8reg, #0AEh          ; Seed random
+    mov rand8reg, #06Eh          ; Seed random
+    mov 46h, #008h
     lcall initser
     lcall setupboard
     loop:                       ; Main loop
@@ -19,17 +16,13 @@ start:
         lcall draw
         lcall update
         sjmp loop
+    gameover:
+        sjmp gameover
 
-tick:
-    inc 43h
-    mov th0, #0h
-    mov tl0, #0h
-    ret
-        
 wait:
     mov R4, #0FFh
     mov R5, #0FFh
-    mov R6, #00Bh
+    mov R6, 46h
     delay:
         djnz R4, delay
         mov R4, #0FFh
@@ -112,37 +105,39 @@ addpart:
     mov 42h, #0h                ; Set part y to 0
     ret
 
-update:
-    inc 42h
-    
-    mov R0, 42h
-    mov A, #30h
-    add A, R0
-    mov R0, A
-    
-    mov R2, #0h
-    mov R1, #60h                ; Sample part start
+update:                                 ; Called every loop to update the game state
+    inc 42h                             ; Move the piece down a row
+
+                                        ; Gets a pointer to the row of the game state where the part is
+    mov R0, 42h                         ; Gets Y position of part
+    mov A, #30h                         ; Start of game state array
+    add A, R0                           ; Generates a pointer to the row in the game state where the current part is
+    mov R0, A                           ; R0 stores the pointer to that row
+
+                                        ; Detect collisions with frozen-in parts
+    mov R2, #0h                         ; Counter for the rows copied
+    mov R1, #60h                        ; Current part start
     copypart3:
-        mov A, @R1                  ; Read in current row of current part
-        mov R3, 41h
-        ls3:
+        mov A, @R1                      ; Read in current row of current part
+        mov R3, 41h                     ; Gets the X position of the current part
+        ls3:                            ; Loop to left shift the part to its X position
             rl A
             djnz R3, ls3
-        anl A, @R0                  ; OR the row of the part with the FB row
-        cjne A, #0h, decfreeze
-        inc R0
-        inc R1
-        inc R2
-        cjne R2, #04h, copypart3
+        anl A, @R0                      ; AND the row of the part with the FB row
+        cjne A, #0h, decfreeze          ; If the result isn't 0, a collision has occurred!
+        inc R0                          ; Otherwise, increment the pointer to the current row of the game state buffer
+        inc R1                          ; Also increment the pointer to the current row of the part
+        inc R2                          ; Finally, increment the row counter
+        cjne R2, #04h, copypart3        ; After 4 rows, the loop is done
     
-    mov R0, #42h
-    cjne @R0, #00Ch, updateend     ; Check if we hit the bottom
-    sjmp freeze
+                                        ; Next, check if the piece is at the bottom of the field
+    mov R0, #42h                        ; Get the current Y position of the part
+    cjne @R0, #00Ch, updateend          ; Check if we hit the bottom. If not, the update is done
+    sjmp freeze                         ; Stop the part
     
-    decfreeze:
-        dec 42h
-    freeze:
-        ; Grabs the relevant row from the game frame buffer
+    decfreeze:                          ; Jumped to in the case of a collision, when we need to move the part back up
+        dec 42h                         ; Move the part back up
+    freeze:                             ; Bakes a part into the game state array
         mov R0, 42h
         mov A, #30h
         add A, R0
@@ -188,101 +183,97 @@ update:
             djnz R2, checkrow 
     ret
 
-draw:
-    ; Moves the contents of the game state buffer into the frame buffer
-    mov R0, #30h
-    mov R1, #50h
-    mov R2, #10h
-    copyrow:
+draw:                                   ; Outputs the game state over serial
+                                        ; Moves the contents of the game state buffer into the frame buffer
+    mov R0, #30h                        ; Start of the game state array
+    mov R1, #50h                        ; Start of the frame buffer
+    mov R2, #10h                        ; Length of both
+    copyrow:                            ; Loop that copies each row of the game state into the frame buffer
         mov A, @R0
         mov @R1, A
         inc R0
         inc R1
         djnz R2, copyrow
-    
-    ; Grabs the relevant row from the game frame buffer
-    mov R0, 42h
-    mov A, #50h
-    add A, R0
+                                        ; Copy the current part onto the frame buffer
+    mov R0, 42h                         ; Gets the position of the current part
+    mov A, #50h                         ; The position in memory of the frame buffer
+    add A, R0                           ; Add them to get the position in memory of the row that the first row of the part occupies
     mov R0, A
-    
-    mov R2, #0h
-    mov R1, #60h                ; Sample part start
-    copypart:
-        mov A, @R1                  ; Read in current row of current part
-        mov R3, 41h
-        ls:
+    mov R2, #0h                         ; Start a counter to loop over the 4 rows of the part
+    mov R1, #60h                        ; Current part start
+    copypart:                           ; Loop that copies the current part into the frame buffer
+        mov A, @R1                      ; Read in current row of current part
+        mov R3, 41h                     ; Read in the X position of the part
+        ls:                             ; Loop that left shifts the part by its X position
             rl A
             djnz R3, ls
-        orl A, @R0                  ; OR the row of the part with the FB row
-        mov @R0, A
-        inc R0
-        inc R1
-        inc R2
-        cjne R2, #04h, copypart
-    
-
-    mov R0, #50h
-    mov R1, #10h
-    row:
+        orl A, @R0                      ; OR the row of the part with the FB row
+        mov @R0, A                      ; Store the row back into the frame buffer
+        inc R0                          ; Increments the pointer to the row in the frame buffer
+        inc R1                          ; Increment the pointer to the next row of the part
+        inc R2                          ; Count up current row counter
+        cjne R2, #04h, copypart         ; Count up to 4 rows, because all parts have 4 rows of data
+        
+                                        ; Send the completed frame buffer over serial
+    mov R0, #50h                        ; Pointer to the beginning of the frame buffer
+    mov R1, #10h                        ; Length of the frame buffer
+    row:                                ; Loop to send each row of the FB
         mov A, @R0
         lcall sndchr
         inc R0
         djnz R1, row
-    ;mov A, #0ah
-    ;lcall sndchr
     ret
     
-initser:                        ; Sets up serial port timer for 9600 baud
+initser:                                ; Sets up serial port timer for 9600 baud
     mov th0, #0h
     mov tl0, #0h
 
-    mov tmod, #021h             ; Set timer 1 for auto reload, mode 2
-    mov tcon, #050h             ; Run timer 1
-    mov th1, #0fdh              ; Set 9600 baud with xtal=11.059 mhz
-    mov scon, #050h             ; Set serial control reg for 8 bit data, and mode 1
+    mov tmod, #021h                     ; Set timer 1 for auto reload, mode 2
+    mov tcon, #050h                     ; Run timer 1
+    mov th1, #0fdh                      ; Set 9600 baud with xtal=11.059 mhz
+    mov scon, #050h                     ; Set serial control reg for 8 bit data, and mode 1
     
-    ;setb IE.1                   ; Enable timer 0 interrupts
-    ;setb EA                     ; Enable interrupts
+    ;setb IE.1                          ; Enable timer 0 interrupts
+    ;setb EA                            ; Enable interrupts
     
     ret
 
-getchr:                         ; Waits until a char appears in the serial port and puts it in A
-    jnb ri, getchr              ; Loop until a character is received
-    mov a, sbuf                 ; Move the character from the buffer into A
-    anl a, #7Fh                 ; The 8th bit doesn't matter, so remove it
-    clr ri                      ; Mark that the byte was received
+getchr:                                 ; Waits until a char appears in the serial port and puts it in A
+    jnb ri, getchr                      ; Loop until a character is received
+    mov a, sbuf                         ; Move the character from the buffer into A
+    anl a, #7Fh                         ; The 8th bit doesn't matter, so remove it
+    clr ri                              ; Mark that the byte was received
     ret
 
-sndchr:                         ; Prints the char in A out on the serial port
-    clr scon.1                  ; Mark the send as not complete
-    mov sbuf, a                 ; Move the character from A to the serial buffer
-    txloop:                     ; Loop that runs until the character has been sent
+sndchr:                                 ; Prints the char in A out on the serial port
+    clr scon.1                          ; Mark the send as not complete
+    mov sbuf, a                         ; Move the character from A to the serial buffer
+    txloop:                             ; Loop that runs until the character has been sent
         jnb scon.1, txloop
     ret
 
-setupboard:
-    mov R0, #50h
-    mov R1, #10h
-    setrowfb:
+setupboard:                             ; Initializes the game
+    mov R0, #50h                        ; Start of the frame buffer
+    mov R1, #10h                        ; Length of frame buffer
+    setrowfb:                           ; Loop to 0 all of the rows of the FB
         mov @R0, #0b00000000
         inc R0
         djnz R1, setrowfb
-    mov R0, #30h
-    mov R1, #10h
-    setrowbs:
+    mov R0, #30h                        ; Start of the game state buffer
+    mov R1, #10h                        ; Length of the game state buffer
+    setrowbs:                           ; Loop that 0's the game state buffer
         mov @R0, #0b00000000
         inc R0
         djnz R1, setrowbs
     
-    lcall addpart
+    lcall addpart                       ; Add a new random part
     
     ret
     
-rand8:	mov	a, rand8reg
-	jnz	rand8b
-	cpl	a
-	mov	rand8reg, a
+rand8:	mov	a, rand8reg                 ; Random procedure from PJRC
+	jnz	rand8b                          ; Stores a random value in A
+	cpl	a                               ; Requires a dedicated memory address
+	mov	rand8reg, a                     ; I picked 45h
 rand8b:	anl	a, #10111000b
 	mov	c, p
 	mov	a, rand8reg
