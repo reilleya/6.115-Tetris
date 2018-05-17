@@ -2,11 +2,12 @@
 *.lst
 *.log
 
-PSoC/Display Driver/Display Driver.cydsn/Generated_Source/
-PSoC/Display Driver/Display Driver.cydsn/codegentemp
-PSoC/Display Driver/Display Driver.cydsn/CortexM3
-PSoC/Display Driver/Display Driver.cydsn/BUILD.log
-PSoC/Display Driver/Display Driver.cydsn/Display Driver.rpt
+*.zip
+PSoC/Display Driver.cydsn/Generated_Source/
+PSoC/Display Driver.cydsn/codegentemp
+PSoC/Display Driver.cydsn/CortexM3
+PSoC/Display Driver.cydsn/BUILD.log
+PSoC/Display Driver.cydsn/Display Driver.rpt
 # Created by https://www.gitignore.io/api/psoccreator
 
 ### PSoCCreator ###
@@ -29,3 +30,4 @@ Export/
 
 
 # End of https://www.gitignore.io/api/psoccreator
+PSoC/Display Driver.cydsn/ComponentUpdateLog.txt

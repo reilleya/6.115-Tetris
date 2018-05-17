@@ -1,6 +1,23 @@
-#include "project.h"
-#include "math.h"
+/* ========================================
+ *
+ * Copyright MIT 6.115, 2013
+ * All Rights Reserved
+ * UNPUBLISHED, LICENSED SOFTWARE.
+ *
+ * CONFIDENTIAL AND PROPRIETARY INFORMATION
+ * WHICH IS THE PROPERTY OF MIT 6.115.
+ *
+ * This file is necessary for your project to build.
+ * Please do not delete it.
+ *
+ * ========================================
+*/
 
+#include <device.h>
+#include <math.h>
+
+uint8_t back[16];
+int backwrite = 15;
 
 static const unsigned char reverseByte[] = {
         0x00, 0x80, 0x40, 0xc0, 0x20, 0xa0, 0x60, 0xe0,
@@ -37,28 +54,39 @@ static const unsigned char reverseByte[] = {
         0x1f, 0x9f, 0x5f, 0xdf, 0x3f, 0xbf, 0x7f, 0xff,
     };
 
-uint8_t back[16];
 uint8_t front[16] = {
+                        0b10101110,
+                        0b11101010,
+                        0b01001110,
                         0b00000000,
-                        0b00000000,
-                        0b00000000,
-                        0b00000000,
-                        0b00001100,
-                        0b00001100,
-                        0b00000000,
+                        0b10100000,
+                        0b10100000,
+                        0b11100000,
                         0b00000000,
     
+                        0b10001110,
+                        0b10001010,
+                        0b11101110,
                         0b00000000,
-                        0b00000000,
-                        0b00000000,
-                        0b00000000,
-                        0b00000000,
-                        0b00000100,
-                        0b00110100,
-                        0b00110110
+                        0b11101110,
+                        0b10000100,
+                        0b11100100,
+                        0b00100000
                     };
 
 uint8_t r = 0;
+
+CY_ISR(RX_INT)
+{
+    back[backwrite] = UART_ReadRxData();
+    backwrite++;
+    if (backwrite == 16) {
+        backwrite = 0;
+    }
+    if (backwrite == 15) {
+        for(int copy = 0; copy < 16; copy++) front[copy] = back[copy];
+    }
+}
 
 void rowEnable(uint8_t row) {
     if(row < 8) {
@@ -92,8 +120,14 @@ void writeCol(uint8_t val) {
     spi_2_rck_Write(0); 
 }
 
-int main(void) {
-    CyGlobalIntEnable; /* Enable global interrupts. */
+int main(void)
+{	
+    CyGlobalIntEnable;
+    rx_int_StartEx(RX_INT);             // start RX interrupt (look for CY_ISR with RX_INT address)
+                                        // for code that writes received bytes to LCD.
+    
+    UART_Start();                       // initialize UART
+    UART_ClearRxBuffer();
 
     SPIM_1_Start();
     SPIM_1_EnableTxInt();
@@ -115,15 +149,14 @@ int main(void) {
     spi_3_srclr_Write(1);
     spi_3_rck_Write(0);
     
-    
-    for(;;) {
+    for(;;){
         rowEnable(r);
         
         for(int x = 0; x < 8; x++) {
             writeCol((uint8_t)pow(2, x) & reverseByte[front[r]]);
             //CyDelay(250);
         }
-        
+        CyDelayUs(5);
         r += 1;
         if(r == 16) {
             r = 0;

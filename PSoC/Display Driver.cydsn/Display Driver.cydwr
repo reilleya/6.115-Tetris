@@ -1,28 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DesignWideResources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cypress.com/xsd/cydwr">
   <Group key="Clock2">
-    <Data key="ClockSolver" value="1" />
     <Group key="DesigneWideClks" />
     <Group key="LocalClks" />
     <Group key="SourceClks" />
     <Group key="SystemClks">
       <Group key="1F7CF08C-1B36-4851-9441-035049A4211B">
         <Data key="check_tolerance" value="True" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
         <Data key="desired_freq" value="0" />
-        <Data key="desired_unit" value="0" />
+        <Data key="desired_unit" value="15" />
         <Data key="divider" value="0" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="False" />
-        <Data key="minus_accuracy" value="0" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="Digital Signal" />
         <Data key="netlist_name" value="Digital_Signal" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="0" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="" />
         <Data key="src_clk_name" value="" />
         <Data key="start_on_reset" value="False" />
@@ -31,21 +25,16 @@
       </Group>
       <Group key="39D5E4C2-EBFC-44ab-AE3D-19F9BBFD674D">
         <Data key="check_tolerance" value="True" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
         <Data key="desired_freq" value="24" />
         <Data key="desired_unit" value="6" />
         <Data key="divider" value="0" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="True" />
-        <Data key="minus_accuracy" value="1" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="PLL_OUT" />
         <Data key="netlist_name" value="PLL_OUT" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="1" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="CEF43CFB-0213-49b9-B980-2FFAB81C5B47" />
         <Data key="src_clk_name" value="IMO" />
         <Data key="start_on_reset" value="True" />
@@ -53,60 +42,44 @@
         <Data key="user_set_domain" value="False" />
       </Group>
       <Group key="46B167E3-1786-4598-8688-AACCF18668D4">
-        <Data key="check_tolerance" value="False" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
-        <Data key="desired_freq" value="24" />
+        <Data key="check_tolerance" value="True" />
+        <Data key="desired_freq" value="25" />
         <Data key="desired_unit" value="6" />
         <Data key="divider" value="0" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="False" />
-        <Data key="minus_accuracy" value="0" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="XTAL" />
         <Data key="netlist_name" value="XTAL" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="0" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="" />
         <Data key="src_clk_name" value="" />
         <Data key="start_on_reset" value="False" />
         <Data key="sync_with_bus_clk" value="False" />
         <Data key="user_set_domain" value="False" />
-        <Data key="xtal_ampiadj" value="19" />
-        <Data key="xtal_ampiadj_customized" value="False" />
         <Data key="xtal_automatic_gain_control" value="False" />
-        <Data key="xtal_crystal_accuracy_unit" value="PPM" />
-        <Data key="xtal_custom_timeout" value="130000" />
+        <Data key="xtal_crystal_accuracy_unit" value="Pct" />
         <Data key="xtal_enable_fault_recovery" value="False" />
         <Data key="xtal_feedback_ref_level" value="3" />
-        <Data key="xtal_halt_on_eco_startup_error" value="True" />
-        <Data key="xtal_load_capacitance" value="12" />
+        <Data key="xtal_minus_Crystal_acuracy_name" value="0" />
+        <Data key="xtal_plus_crystal_acuracy_name" value="0" />
         <Data key="xtal_ref_level_customized" value="False" />
-        <Data key="xtal_shunt_capacitance" value="7" />
-        <Data key="xtal_use_custom_timeout" value="False" />
-        <Data key="xtal_use_osc_volt_pumps" value="False" />
         <Data key="xtal_watchdog_ref_level" value="3" />
       </Group>
       <Group key="75C2148C-3656-4d8a-846D-0CAE99AB6FF7">
         <Data key="check_tolerance" value="True" />
         <Data key="clk_key_bus_usedivider" value="True" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
         <Data key="desired_freq" value="0" />
-        <Data key="desired_unit" value="0" />
+        <Data key="desired_unit" value="15" />
         <Data key="divider" value="1" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="True" />
-        <Data key="minus_accuracy" value="1" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="BUS_CLK" />
         <Data key="netlist_name" value="BUS_CLK" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="1" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="61737EF6-3B74-48f9-8B91-F7473A442AE7" />
         <Data key="src_clk_name" value="MASTER_CLK" />
         <Data key="start_on_reset" value="True" />
@@ -115,22 +88,17 @@
       </Group>
       <Group key="61737EF6-3B74-48f9-8B91-F7473A442AE7">
         <Data key="check_tolerance" value="True" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
         <Data key="desired_freq" value="0" />
-        <Data key="desired_unit" value="0" />
+        <Data key="desired_unit" value="15" />
         <Data key="divider" value="1" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="True" />
         <Data key="master_divider_used" value="True" />
-        <Data key="minus_accuracy" value="1" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="MASTER_CLK" />
         <Data key="netlist_name" value="MASTER_CLK" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="1" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="39D5E4C2-EBFC-44ab-AE3D-19F9BBFD674D" />
         <Data key="src_clk_name" value="PLL_OUT" />
         <Data key="start_on_reset" value="True" />
@@ -141,21 +109,16 @@
         <Data key="check_tolerance" value="True" />
         <Data key="clk_key_usb_imox2" value="True" />
         <Data key="clk_key_usb_usedivider" value="False" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
         <Data key="desired_freq" value="48" />
         <Data key="desired_unit" value="6" />
         <Data key="divider" value="1" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="False" />
-        <Data key="minus_accuracy" value="0" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="USB_CLK" />
         <Data key="netlist_name" value="USB_CLK" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="0" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="CEF43CFB-0213-49b9-B980-2FFAB81C5B47" />
         <Data key="src_clk_name" value="IMO" />
         <Data key="start_on_reset" value="False" />
@@ -163,26 +126,21 @@
         <Data key="user_set_domain" value="False" />
       </Group>
       <Group key="315365C3-2E3E-4f04-84A2-BB564A173261">
-        <Data key="check_tolerance" value="False" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
+        <Data key="check_tolerance" value="True" />
         <Data key="desired_freq" value="0" />
-        <Data key="desired_unit" value="0" />
+        <Data key="desired_unit" value="15" />
         <Data key="divider" value="0" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="True" />
         <Data key="ilo_1k_enabled" value="True" />
         <Data key="ilo_33k_enabled" value="False" />
         <Data key="ilo_100k_enabled" value="False" />
         <Data key="ilo_oscillator" value="ILO_1kHz" />
-        <Data key="minus_accuracy" value="50" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="ILO" />
         <Data key="netlist_name" value="ILO" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="100" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="" />
         <Data key="src_clk_name" value="" />
         <Data key="start_on_reset" value="True" />
@@ -191,23 +149,18 @@
       </Group>
       <Group key="CEF43CFB-0213-49b9-B980-2FFAB81C5B47">
         <Data key="check_tolerance" value="True" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
         <Data key="desired_freq" value="3" />
         <Data key="desired_unit" value="6" />
         <Data key="divider" value="0" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="True" />
         <Data key="imo_doubler" value="False" />
         <Data key="imo_oscillator" value="IMO_3MHZ" />
-        <Data key="minus_accuracy" value="1" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="IMO" />
         <Data key="netlist_name" value="IMO" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="1" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="" />
         <Data key="src_clk_name" value="" />
         <Data key="start_on_reset" value="True" />
@@ -216,21 +169,16 @@
       </Group>
       <Group key="EC9D9168-D68F-4573-AC21-F93D3BF005CD">
         <Data key="check_tolerance" value="True" />
-        <Data key="clock_version" value="v1" />
-        <Data key="derive_type" value="BUILTIN" />
         <Data key="desired_freq" value="32.768" />
         <Data key="desired_unit" value="3" />
         <Data key="divider" value="0" />
-        <Data key="domain" value="DIGITAL" />
+        <Data key="domain" value="0" />
         <Data key="enabled" value="False" />
-        <Data key="minus_accuracy" value="0" />
         <Data key="minus_tolerance" value="0" />
         <Data key="name" value="XTAL 32kHz" />
         <Data key="netlist_name" value="XTAL_32KHZ" />
         <Data key="placement" value="GLOBAL" />
-        <Data key="plus_accuracy" value="0" />
         <Data key="plus_tolerance" value="0" />
-        <Data key="scope" value="BUILTIN" />
         <Data key="src_clk_id" value="" />
         <Data key="src_clk_name" value="" />
         <Data key="start_on_reset" value="False" />
@@ -248,43 +196,36 @@
       <Data key="LIN_Dynamic" value="LIN_Dynamic_v4_0" />
     </Group>
   </Group>
-  <Data key="DataVersionKey" value="2" />
+  <Data key="DataVersionKey" value="1" />
   <Group key="DWRInstGuidMapping">
     <Group key="Pin">
-      <Data key="1f44f782-f6df-421f-a977-2ed68851d0da" value="spi_2_ss" />
-      <Data key="2d5a3554-e6c4-49f6-9433-0442bd8b215d" value="spi_2_miso" />
-      <Data key="4d407524-1228-48b0-a974-97a1f56a27fd" value="spi_4_oe" />
-      <Data key="4f15611d-a12e-46a2-a56a-57e13a872b50" value="spi_3_rck" />
-      <Data key="6a173e56-45bd-49c5-b921-25a5d03cb644" value="led" />
-      <Data key="7d764d3e-fd1f-4ba3-afc6-495aeb18b4d9" value="spi_1_srclr" />
-      <Data key="8ce4c8c9-03e0-49e8-812d-f4875eb04a66" value="spi_4_ss" />
+      <Data key="3a895bc5-5558-4deb-975d-76126c843faf" value="spi_3_mosi" />
+      <Data key="3caa3eee-2cbd-4520-a88c-a569e2e05171" value="spi_1_mosi" />
+      <Data key="3ff3fd5f-1b89-4067-b4d5-61f0890cf973" value="spi_1_srclr" />
+      <Data key="4c15b41e-e284-4978-99e7-5aaee19bd0ce" value="RESET" />
+      <Data key="6b2f4dc0-b2b4-47aa-ac37-6dd4d04f3b7f" value="spi_3_g" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="spi_1_miso" />
-      <Data key="9b8a62e5-8a9b-4778-8391-2138c3d9c911" value="spi_3_clk" />
-      <Data key="9e9fad60-9572-4f22-bd50-5d75c747c66a" value="spi_2_clk" />
-      <Data key="14a73186-b434-4b40-a15a-0ea0de0ba47a" value="spi_1_clk" />
-      <Data key="61c12ddf-3e5d-4614-90cc-0d5748bf36ae" value="spi_1_mosi" />
-      <Data key="64a42c2a-4e1a-4c49-a3f2-015448c895a9" value="spi_2_oe" />
-      <Data key="133c8def-b50d-4f52-8fe8-4b9241a81427" value="spi_1_ss" />
-      <Data key="796a103b-b19f-43eb-a3f3-dd623d61d2ec" value="spi_2_rck" />
-      <Data key="17538c43-4b32-48b6-81bc-8f5ea8230532" value="spi_1_rck" />
-      <Data key="5659563a-4089-4faf-9577-aa3924ced3d6" value="spi_3_g" />
-      <Data key="a8ec7c42-bd67-4f55-84a4-8e83a4c70d7d" value="spi_3_mosi" />
-      <Data key="b7a27369-b248-4027-9709-d65626fadc15" value="spi_2_srclr" />
-      <Data key="bf1b2f43-57d2-4950-86f7-2848283ee8b8" value="spi_4_rck" />
-      <Data key="c33f4a1f-c161-4386-9575-ef387d165888" value="spi_4_clk" />
-      <Data key="c670f040-e210-4362-bb0b-f63ed480252d" value="spi_4_mosi" />
-      <Data key="cb79ec0c-26a1-402d-8dcb-053ae700c071" value="spi_3_miso" />
-      <Data key="d9f1d7f5-b2e6-48de-a030-5bc453b5979d" value="spi_3_ss" />
-      <Data key="dd453e30-11dd-4fed-aec8-e1969a0efb64" value="spi_4_miso" />
-      <Data key="e3f9559f-d4cf-4bea-9a3b-3c503eee7d5a" value="spi_4_srclr" />
+      <Data key="21b73a8c-1f6c-44d7-9664-d9f6b41b63f8" value="spi_2_rck" />
+      <Data key="52f31aa9-2f0a-497d-9a1f-1424095e13e6" value="TX" />
+      <Data key="65ae02db-df48-4da4-adf0-333b8cfb3718" value="spi_3_miso" />
+      <Data key="0317c35a-9740-4c14-98e5-fdbfe4ef10c5" value="spi_2_ss" />
+      <Data key="743d4abb-26af-45c7-b23c-52ae8bdc946b/ed092b9b-d398-4703-be89-cebf998501f6" value="LCD_LCDPort" />
+      <Data key="971a5f5a-da38-4786-86ba-585b36005005" value="spi_3_srclr" />
+      <Data key="6553bfef-8e30-4664-8f03-66d127dc60f0" value="spi_2_mosi" />
+      <Data key="84714eba-9838-46eb-8150-a02fc356a6ee" value="spi_2_srclr" />
+      <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="RX" />
+      <Data key="b4ae7286-ca35-40d0-b776-a9a949f4600b" value="spi_3_rck" />
+      <Data key="b09ff3af-accb-4cfc-9baa-12eaac7bff9f" value="spi_2_clk" />
+      <Data key="bca1d6ce-2cff-4040-8ba3-3ef20a25b09d" value="spi_3_ss" />
+      <Data key="c0ac758e-f24b-48f1-bfa3-50f218e8350f" value="spi_1_ss" />
+      <Data key="c8bdaf97-1c3e-4c00-8f96-772fef7ff3ab" value="spi_1_rck" />
+      <Data key="cbc8c8c6-dc5b-4725-80e1-61299725f06c" value="spi_1_clk" />
+      <Data key="d0467c88-0e77-449b-822c-0398efb88c96" value="spi_3_clk" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="spi_1_g" />
-      <Data key="f328d749-50b6-47f5-be03-30f55db03b75" value="spi_2_mosi" />
-      <Data key="faf2e449-6f25-4c9e-ab1d-7a005b85a01d" value="spi_3_srclr" />
+      <Data key="e5649fc3-62c6-4553-ad1f-9cc6ca593115" value="spi_2_oe" />
+      <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="TX" />
+      <Data key="f7902f48-0e11-482d-9995-1d0f58afc468" value="spi_2_miso" />
     </Group>
-  </Group>
-  <Group key="EEPROM">
-    <Data key="DataKey" value="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" />
-    <Data key="InHexFileKey" value="False" />
   </Group>
   <Group key="FlashSecurity">
     <Group key="RowsKey">
@@ -3366,149 +3307,152 @@
     </Group>
   </Group>
   <Group key="Pin2">
-    <Group key="1f44f782-f6df-421f-a977-2ed68851d0da">
+    <Group key="3a895bc5-5558-4deb-975d-76126c843faf">
       <Group key="0">
-        <Data key="Port Format" value="0,3" />
+        <Data key="Port Format" value="5,3" />
       </Group>
     </Group>
-    <Group key="2d5a3554-e6c4-49f6-9433-0442bd8b215d">
-      <Group key="0">
-        <Data key="Port Format" value="0,0" />
-      </Group>
-    </Group>
-    <Group key="4d407524-1228-48b0-a974-97a1f56a27fd">
-      <Group key="0">
-        <Data key="Port Format" value="12,0" />
-      </Group>
-    </Group>
-    <Group key="4f15611d-a12e-46a2-a56a-57e13a872b50">
+    <Group key="3caa3eee-2cbd-4520-a88c-a569e2e05171">
       <Group key="0">
         <Data key="Port Format" value="1,2" />
       </Group>
     </Group>
-    <Group key="6a173e56-45bd-49c5-b921-25a5d03cb644">
-      <Group key="0">
-        <Data key="Port Format" value="2,1" />
-      </Group>
-    </Group>
-    <Group key="7d764d3e-fd1f-4ba3-afc6-495aeb18b4d9">
+    <Group key="3ff3fd5f-1b89-4067-b4d5-61f0890cf973">
       <Group key="0">
         <Data key="Port Format" value="2,4" />
       </Group>
     </Group>
-    <Group key="8ce4c8c9-03e0-49e8-812d-f4875eb04a66">
+    <Group key="4c15b41e-e284-4978-99e7-5aaee19bd0ce">
       <Group key="0">
-        <Data key="Port Format" value="3,4" />
+        <Data key="Port Format" value="6,1" />
+      </Group>
+    </Group>
+    <Group key="6b2f4dc0-b2b4-47aa-ac37-6dd4d04f3b7f">
+      <Group key="0">
+        <Data key="Port Format" value="5,5" />
       </Group>
     </Group>
     <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
       <Group key="0">
-        <Data key="Port Format" value="1,6" />
-      </Group>
-    </Group>
-    <Group key="9b8a62e5-8a9b-4778-8391-2138c3d9c911">
-      <Group key="0">
-        <Data key="Port Format" value="0,1" />
-      </Group>
-    </Group>
-    <Group key="9e9fad60-9572-4f22-bd50-5d75c747c66a">
-      <Group key="0">
         <Data key="Port Format" value="0,6" />
       </Group>
     </Group>
-    <Group key="14a73186-b434-4b40-a15a-0ea0de0ba47a">
+    <Group key="21b73a8c-1f6c-44d7-9664-d9f6b41b63f8">
       <Group key="0">
-        <Data key="Port Format" value="2,0" />
+        <Data key="Port Format" value="5,0" />
       </Group>
     </Group>
-    <Group key="61c12ddf-3e5d-4614-90cc-0d5748bf36ae">
+    <Group key="52f31aa9-2f0a-497d-9a1f-1424095e13e6">
       <Group key="0">
-        <Data key="Port Format" value="1,7" />
+        <Data key="Port Format" value="12,6" />
       </Group>
     </Group>
-    <Group key="64a42c2a-4e1a-4c49-a3f2-015448c895a9">
+    <Group key="65ae02db-df48-4da4-adf0-333b8cfb3718">
       <Group key="0">
         <Data key="Port Format" value="0,4" />
       </Group>
     </Group>
-    <Group key="133c8def-b50d-4f52-8fe8-4b9241a81427">
+    <Group key="0317c35a-9740-4c14-98e5-fdbfe4ef10c5">
       <Group key="0">
-        <Data key="Port Format" value="2,5" />
+        <Data key="Port Format" value="12,0" />
       </Group>
     </Group>
-    <Group key="796a103b-b19f-43eb-a3f3-dd623d61d2ec">
+    <Group key="743d4abb-26af-45c7-b23c-52ae8bdc946b/ed092b9b-d398-4703-be89-cebf998501f6">
       <Group key="0">
-        <Data key="Port Format" value="12,2" />
+        <Data key="Port Format" value="2,0" />
       </Group>
-    </Group>
-    <Group key="17538c43-4b32-48b6-81bc-8f5ea8230532">
-      <Group key="0">
-        <Data key="Port Format" value="2,3" />
+      <Group key="1">
+        <Data key="Port Format" value="2,1" />
       </Group>
-    </Group>
-    <Group key="5659563a-4089-4faf-9577-aa3924ced3d6">
-      <Group key="0">
-        <Data key="Port Format" value="0,2" />
-      </Group>
-    </Group>
-    <Group key="a8ec7c42-bd67-4f55-84a4-8e83a4c70d7d">
-      <Group key="0">
-        <Data key="Port Format" value="0,7" />
-      </Group>
-    </Group>
-    <Group key="b7a27369-b248-4027-9709-d65626fadc15">
-      <Group key="0">
-        <Data key="Port Format" value="15,0" />
-      </Group>
-    </Group>
-    <Group key="bf1b2f43-57d2-4950-86f7-2848283ee8b8">
-      <Group key="0">
-        <Data key="Port Format" value="3,2" />
-      </Group>
-    </Group>
-    <Group key="c33f4a1f-c161-4386-9575-ef387d165888">
-      <Group key="0">
-        <Data key="Port Format" value="3,5" />
-      </Group>
-    </Group>
-    <Group key="c670f040-e210-4362-bb0b-f63ed480252d">
-      <Group key="0">
-        <Data key="Port Format" value="3,7" />
-      </Group>
-    </Group>
-    <Group key="cb79ec0c-26a1-402d-8dcb-053ae700c071">
-      <Group key="0">
-        <Data key="Port Format" value="0,5" />
-      </Group>
-    </Group>
-    <Group key="d9f1d7f5-b2e6-48de-a030-5bc453b5979d">
-      <Group key="0">
-        <Data key="Port Format" value="1,5" />
-      </Group>
-    </Group>
-    <Group key="dd453e30-11dd-4fed-aec8-e1969a0efb64">
-      <Group key="0">
-        <Data key="Port Format" value="3,6" />
-      </Group>
-    </Group>
-    <Group key="e3f9559f-d4cf-4bea-9a3b-3c503eee7d5a">
-      <Group key="0">
-        <Data key="Port Format" value="3,3" />
-      </Group>
-    </Group>
-    <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
-      <Group key="0">
+      <Group key="2">
         <Data key="Port Format" value="2,2" />
       </Group>
+      <Group key="3">
+        <Data key="Port Format" value="2,3" />
+      </Group>
+      <Group key="4">
+        <Data key="Port Format" value="2,4" />
+      </Group>
+      <Group key="5">
+        <Data key="Port Format" value="2,5" />
+      </Group>
+      <Group key="6">
+        <Data key="Port Format" value="2,6" />
+      </Group>
     </Group>
-    <Group key="f328d749-50b6-47f5-be03-30f55db03b75">
+    <Group key="971a5f5a-da38-4786-86ba-585b36005005">
       <Group key="0">
         <Data key="Port Format" value="12,3" />
       </Group>
     </Group>
-    <Group key="faf2e449-6f25-4c9e-ab1d-7a005b85a01d">
+    <Group key="6553bfef-8e30-4664-8f03-66d127dc60f0">
+      <Group key="0">
+        <Data key="Port Format" value="5,4" />
+      </Group>
+    </Group>
+    <Group key="84714eba-9838-46eb-8150-a02fc356a6ee">
+      <Group key="0">
+        <Data key="Port Format" value="12,2" />
+      </Group>
+    </Group>
+    <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
+      <Group key="0">
+        <Data key="Port Format" value="6,0" />
+      </Group>
+    </Group>
+    <Group key="b4ae7286-ca35-40d0-b776-a9a949f4600b">
+      <Group key="0">
+        <Data key="Port Format" value="5,1" />
+      </Group>
+    </Group>
+    <Group key="b09ff3af-accb-4cfc-9baa-12eaac7bff9f">
+      <Group key="0">
+        <Data key="Port Format" value="5,6" />
+      </Group>
+    </Group>
+    <Group key="bca1d6ce-2cff-4040-8ba3-3ef20a25b09d">
+      <Group key="0">
+        <Data key="Port Format" value="12,1" />
+      </Group>
+    </Group>
+    <Group key="c0ac758e-f24b-48f1-bfa3-50f218e8350f">
+      <Group key="0">
+        <Data key="Port Format" value="2,2" />
+      </Group>
+    </Group>
+    <Group key="c8bdaf97-1c3e-4c00-8f96-772fef7ff3ab">
+      <Group key="0">
+        <Data key="Port Format" value="2,6" />
+      </Group>
+    </Group>
+    <Group key="cbc8c8c6-dc5b-4725-80e1-61299725f06c">
+      <Group key="0">
+        <Data key="Port Format" value="1,6" />
+      </Group>
+    </Group>
+    <Group key="d0467c88-0e77-449b-822c-0398efb88c96">
+      <Group key="0">
+        <Data key="Port Format" value="5,7" />
+      </Group>
+    </Group>
+    <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
       <Group key="0">
         <Data key="Port Format" value="1,4" />
+      </Group>
+    </Group>
+    <Group key="e5649fc3-62c6-4553-ad1f-9cc6ca593115">
+      <Group key="0">
+        <Data key="Port Format" value="5,2" />
+      </Group>
+    </Group>
+    <Group key="ed092b9b-d398-4703-be89-cebf998501f6">
+      <Group key="0">
+        <Data key="Port Format" value="6,6" />
+      </Group>
+    </Group>
+    <Group key="f7902f48-0e11-482d-9995-1d0f58afc468">
+      <Group key="0">
+        <Data key="Port Format" value="0,5" />
       </Group>
     </Group>
     <Group key="UnAssigned Pins" />
@@ -3517,17 +3461,26 @@
     <Data key="count" value="0" />
   </Group>
   <Group key="System3">
+    <Data key="CYDEV_APPLICATION_ID" value="0x0000" />
+    <Data key="CYDEV_APPLICATION_VERSION" value="0x0000" />
+    <Data key="CYDEV_BOOTLOADER_CHECKSUM" value="BASIC" />
+    <Data key="CYDEV_BOOTLOADER_FAST_VERIFY" value="False" />
+    <Data key="CYDEV_BOOTLOADER_IO_COMP" value="CUSTOM_IO" />
+    <Data key="CYDEV_BOOTLOADER_VERSION" value="0x0000" />
+    <Data key="CYDEV_BOOTLOADER_WAIT_COMMAND" value="True" />
+    <Data key="CYDEV_BOOTLOADER_WAIT_TIME" value="200" />
     <Data key="CYDEV_CONFIG_FASTBOOT_ENABLED" value="True" />
     <Data key="CYDEV_CONFIG_UNUSED_IO" value="AllowButWarn" />
     <Data key="CYDEV_CONFIGURATION_ECC" value="True" />
     <Data key="CYDEV_CONFIGURATION_MODE" value="COMPRESSED" />
+    <Data key="CYDEV_CUSTOM_ID" value="0x00000000" />
     <Data key="CYDEV_DEBUGGING_DPS" value="SWD_SWV" />
     <Data key="CYDEV_DEBUGGING_XRES" value="False" />
     <Data key="CYDEV_ECC_ENABLE" value="False" />
-    <Data key="CYDEV_HEAP_SIZE" value="0x80" />
+    <Data key="CYDEV_HEAP_SIZE" value="0x1000" />
     <Data key="CYDEV_INSTRUCT_CACHE_ENABLED" value="True" />
     <Data key="CYDEV_PROTECTION_ENABLE" value="False" />
-    <Data key="CYDEV_STACK_SIZE" value="0x0800" />
+    <Data key="CYDEV_STACK_SIZE" value="0x4000" />
     <Data key="CYDEV_TEMPERATURE" value="-40C - 85/125C" />
     <Data key="CYDEV_TRACE_ENABLED" value="False" />
     <Data key="CYDEV_USE_BUNDLED_CMSIS" value="True" />
