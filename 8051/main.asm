@@ -5,8 +5,8 @@
     
 .org 100h
 start:
-    mov P1, 0h                          ; Zero the score counter
-    mov P3, 0FFh                        ; Protect the P3 inputs
+    mov P1, #00h                          ; Zero the score counter
+    mov P3, #0FFh                        ; Protect the P3 inputs
     mov rand8reg, #06Eh                 ; Seed random
     mov 46h, #008h                      ; Initial timer value
     lcall initser                       ; Setup the serial port
