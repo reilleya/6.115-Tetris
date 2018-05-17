@@ -1,6 +1,6 @@
 /* ========================================
  *
- * Copyright MIT 6.115, 2013
+ * Copyright Andrew Reilley, 2018
  * All Rights Reserved
  * UNPUBLISHED, LICENSED SOFTWARE.
  *
@@ -16,10 +16,10 @@
 #include <device.h>
 #include <math.h>
 
-uint8_t back[16];
-int backwrite = 15;
+uint8_t back[16];                                                       // Back buffer, currently being written into
+int backwrite = 15;                                                     // Index that is currently being written into
 
-static const unsigned char reverseByte[] = {
+static const unsigned char reverseByte[] = {                            // Array to reverse bytes. Byte->reversed byte
         0x00, 0x80, 0x40, 0xc0, 0x20, 0xa0, 0x60, 0xe0,
         0x10, 0x90, 0x50, 0xd0, 0x30, 0xb0, 0x70, 0xf0,
         0x08, 0x88, 0x48, 0xc8, 0x28, 0xa8, 0x68, 0xe8,
@@ -54,7 +54,7 @@ static const unsigned char reverseByte[] = {
         0x1f, 0x9f, 0x5f, 0xdf, 0x3f, 0xbf, 0x7f, 0xff,
     };
 
-uint8_t front[16] = {
+uint8_t front[16] = {                                                   // Buffer that gets drawn
                         0b10101110,
                         0b11101010,
                         0b01001110,
@@ -74,62 +74,58 @@ uint8_t front[16] = {
                         0b00100000
                     };
 
-uint8_t r = 0;
+uint8_t r = 0;                                                          // Row that is currently being drawn
 
-CY_ISR(RX_INT)
+CY_ISR(RX_INT)                                                          // Interrupt for when serial data is received
 {
-    back[backwrite] = UART_ReadRxData();
-    backwrite++;
-    if (backwrite == 16) {
+    back[backwrite] = UART_ReadRxData();                                // Read the data into the correct spot in the back buffer
+    backwrite++;                                                        // Increment the spot you are writing to
+    if (backwrite == 16) {                                              // Loop around when you have written everything
         backwrite = 0;
     }
-    if (backwrite == 15) {
-        for(int copy = 0; copy < 16; copy++) front[copy] = back[copy];
+    if (backwrite == 15) {                                              // Redraw when the buffer has been fully replaced
+        for(int copy = 0; copy < 16; copy++) front[copy] = back[copy];  // Copy the back buffer into the front buffer
     }
 }
 
-void rowEnable(uint8_t row) {
-    if(row < 8) {
-        spi_3_g_Write(1);
+void rowEnable(uint8_t row) {                                           // Enable a row on the relevant shift register
+    if(row < 8) {                                                       // First 8 rows are handled by SPI1
+        spi_3_g_Write(1);                                               // Disable both shift register outputs
         spi_1_g_Write(1);
-        SPIM_1_WriteTxData(pow(2, row));
-        //while(!(SPIM_1_ReadTxStatus() & SPIM_1_STS_SPI_DONE));
-        CyDelayUs(10);
-        spi_1_rck_Write(1);
+        SPIM_1_WriteTxData(pow(2, row));                                // Enable the row
+        CyDelayUs(10);                                                  // Wait until it settles
+        spi_1_rck_Write(1);                                             // Latch in the data
         spi_1_rck_Write(0);
-        spi_1_g_Write(0);
+        spi_1_g_Write(0);                                               // Re-enable SR 1
     }
     else {
-        spi_1_g_Write(1);
+        spi_1_g_Write(1);                                               // Disable the outputs on both shift registers
         spi_3_g_Write(1);
-        SPIM_3_WriteTxData(pow(2, row - 8));
-        //while(!(SPIM_1_ReadTxStatus() & SPIM_1_STS_SPI_DONE));
-        CyDelayUs(10);
-        spi_3_rck_Write(1);
+        SPIM_3_WriteTxData(pow(2, row - 8));                            // Turn on the row on the second SR
+        CyDelayUs(10);                                                  // Wait for it to settle
+        spi_3_rck_Write(1);                                             // Latch it
         spi_3_rck_Write(0);
-        spi_3_g_Write(0);
+        spi_3_g_Write(0);                                               // Enable the second SR
     }
 }
 
-void writeCol(uint8_t val) {
+void writeCol(uint8_t val) {                                            // Enables a specific column
+    SPIM_2_WriteTxData(val);                                            // Write twice to shift it through both shift registers
     SPIM_2_WriteTxData(val);
-    SPIM_2_WriteTxData(val);
-    //while(!(SPIM_2_ReadTxStatus() & SPIM_2_STS_SPI_DONE));
-    CyDelayUs(5);
-    spi_2_rck_Write(1);
+    CyDelayUs(5);                                                       // Wait for it to settle
+    spi_2_rck_Write(1);                                                 // Latch it
     spi_2_rck_Write(0); 
 }
 
 int main(void)
 {	
     CyGlobalIntEnable;
-    rx_int_StartEx(RX_INT);             // start RX interrupt (look for CY_ISR with RX_INT address)
-                                        // for code that writes received bytes to LCD.
+    rx_int_StartEx(RX_INT);                                             // start RX interrupt
     
-    UART_Start();                       // initialize UART
+    UART_Start();                                                       // initialize UART
     UART_ClearRxBuffer();
 
-    SPIM_1_Start();
+    SPIM_1_Start();                                                     // Enable all SPI outputs
     SPIM_1_EnableTxInt();
     
     SPIM_2_Start();
@@ -138,9 +134,9 @@ int main(void)
     SPIM_3_Start();
     SPIM_3_EnableTxInt();
     
-    CyDelay(10);
+    CyDelay(10);                                                        // Give them time to start
     
-    spi_1_srclr_Write(1);
+    spi_1_srclr_Write(1);                                               // Set all initial SR states
     spi_1_rck_Write(0);
     
     spi_2_oe_Write(0);
@@ -149,16 +145,16 @@ int main(void)
     spi_3_srclr_Write(1);
     spi_3_rck_Write(0);
     
-    for(;;){
-        rowEnable(r);
+    for(;;){                                                            // Endless redraw loop
+        rowEnable(r);                                                   // Enable the current row
         
-        for(int x = 0; x < 8; x++) {
-            writeCol((uint8_t)pow(2, x) & reverseByte[front[r]]);
+        for(int x = 0; x < 8; x++) {                                    // Loop over all columns
+            writeCol((uint8_t)pow(2, x) & reverseByte[front[r]]);       // Enable the current column if the front buffer says to
             //CyDelay(250);
         }
         CyDelayUs(5);
-        r += 1;
-        if(r == 16) {
+        r += 1;                                                         // Move on to the next row
+        if(r == 16) {                                                   // Loop around if you hit the last one
             r = 0;
             writeCol(0);
         }
