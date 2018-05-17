@@ -184,7 +184,7 @@ checkcollision:                         ; Checks for collisions of the current p
             rl A
             djnz R3, ls4
         anl A, @R0                      ; AND the row of the part with the FB row
-        cjne A, #0h, hitdet          ; If the result isn't 0, a collision has occurred!
+        cjne A, #0h, hitdet             ; If the result isn't 0, a collision has occurred!
         inc R0                          ; Otherwise, increment the pointer to the current row of the game state buffer
         inc R1                          ; Also increment the pointer to the current row of the part
         inc R2                          ; Finally, increment the row counter
@@ -233,8 +233,11 @@ update:                                 ; Called every loop to update the game s
     
     mov R0, #30h
     mov R2, #10h
+    clr 42h
     checkrow:
         cjne @R0, #0FFh, notfull
+        inc P1
+        
         mov @R0, #0h
         mov 3, 0
         mov 1, 0
@@ -250,8 +253,12 @@ update:                                 ; Called every loop to update the game s
         mov 0, 3    
         notfull:
             inc R0
-            djnz R2, checkrow 
+            djnz R2, checkrow
+    jb 42h, speedup
     ret
+    speedup:
+        dec 46h
+        ret
 
 draw:                                   ; Outputs the game state over serial
                                         ; Moves the contents of the game state buffer into the frame buffer
