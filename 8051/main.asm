@@ -17,6 +17,31 @@ start:
         lcall update
         sjmp loop
     gameover:
+        mov 46h, #008h
+        mov A, #0h
+        lcall drawimage
+        lcall wait
+        
+        mov 46h, #008h
+        mov A, #1h
+        lcall drawimage
+        lcall wait
+        
+        mov 46h, #003h
+        mov A, #2h
+        lcall drawimage
+        lcall wait
+        
+        mov 46h, #003h
+        mov A, #3h
+        lcall drawimage
+        lcall wait
+        
+        mov 46h, #003h
+        mov A, #4h
+        lcall drawimage
+        lcall wait
+        
         sjmp gameover
 
 wait:
@@ -92,6 +117,21 @@ getpart:
         cjne R0, #7h, loadpartbyte
     ret
     
+drawimage:
+    mov R0, #0h
+    mov DPTR, #700h
+    mov B, #010h
+    mul AB
+    mov DPL, A
+    loadimagebyte:
+        mov A, #0h
+        movc a, @a+dptr
+        lcall sndchr
+        inc DPL
+        inc R0
+        cjne R0, #010h, loadimagebyte
+    ret
+    
 addpart:
     lcall rand8
     mov B, #12h
@@ -102,13 +142,16 @@ addpart:
     mov B, 65h
     div AB
     mov 41h, B                ; Set part x to 4
-    mov 42h, #0h                ; Set part y to 0
+    mov 42h, #0h              ; Set part y to 0
+    lcall checkcollision                ; Check if the newly added part collides
+    jb 41h, gotogameover                ; If it does, the game is over
     ret
+    gotogameover:
+        ljmp gameover
+        
 
-update:                                 ; Called every loop to update the game state
-    inc 42h                             ; Move the piece down a row
-
-                                        ; Gets a pointer to the row of the game state where the part is
+checkcollision:                         ; Checks for collisions of the current part. Sets bit 41h if there is a collision, clears it if not.
+    clr 41h
     mov R0, 42h                         ; Gets Y position of part
     mov A, #30h                         ; Start of game state array
     add A, R0                           ; Generates a pointer to the row in the game state where the current part is
@@ -117,18 +160,28 @@ update:                                 ; Called every loop to update the game s
                                         ; Detect collisions with frozen-in parts
     mov R2, #0h                         ; Counter for the rows copied
     mov R1, #60h                        ; Current part start
-    copypart3:
+    copypart4:
         mov A, @R1                      ; Read in current row of current part
         mov R3, 41h                     ; Gets the X position of the current part
-        ls3:                            ; Loop to left shift the part to its X position
+        ls4:                            ; Loop to left shift the part to its X position
             rl A
-            djnz R3, ls3
+            djnz R3, ls4
         anl A, @R0                      ; AND the row of the part with the FB row
-        cjne A, #0h, decfreeze          ; If the result isn't 0, a collision has occurred!
+        cjne A, #0h, hitdet          ; If the result isn't 0, a collision has occurred!
         inc R0                          ; Otherwise, increment the pointer to the current row of the game state buffer
         inc R1                          ; Also increment the pointer to the current row of the part
         inc R2                          ; Finally, increment the row counter
-        cjne R2, #04h, copypart3        ; After 4 rows, the loop is done
+        cjne R2, #04h, copypart4        ; After 4 rows, the loop is done
+    ret
+    hitdet:
+        setb 41h
+    ret
+    
+update:                                 ; Called every loop to update the game state
+    inc 42h                             ; Move the piece down a row
+
+    lcall checkcollision                ; Check if a collision occurred
+    jb 41h, decfreeze                   ; Move the part back up if one did
     
                                         ; Next, check if the piece is at the bottom of the field
     mov R0, #42h                        ; Get the current Y position of the part
@@ -144,7 +197,7 @@ update:                                 ; Called every loop to update the game s
         mov R0, A
         
         mov R2, #0h
-        mov R1, #60h                ; Sample part start
+        mov R1, #60h                    ; Current part start
         copypart2:
             mov A, @R1                  ; Read in current row of current part
             mov R3, 41h
@@ -280,6 +333,95 @@ rand8b:	anl	a, #10111000b
 	rlc	a
 	mov	rand8reg, a
 	ret
+
+.org 700h
+    ; You
+    .db 0b01100110
+    .db 0b01100110
+    .db 0b01111110
+    .db 0b00011000
+    .db 0b00011000
+    .db 0b00000000
+    .db 0b01111110
+    .db 0b01000010
+    .db 0b01000010
+    .db 0b01000010
+    .db 0b01111110
+    .db 0b00000000
+    .db 0b01000010
+    .db 0b01000010
+    .db 0b01100110
+    .db 0b01111110
+    
+    ;Los(t)
+    .db 0b01100000
+    .db 0b01100000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01001000
+    .db 0b01001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01000000
+    .db 0b01111000
+    .db 0b00001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    
+    .db 0b01100000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01001000
+    .db 0b01001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01000000
+    .db 0b01111000
+    .db 0b00001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b00110000
+    
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01001000
+    .db 0b01001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01000000
+    .db 0b01111000
+    .db 0b00001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b00110000
+    .db 0b00110000
+
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01001000
+    .db 0b01001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b01000000
+    .db 0b01111000
+    .db 0b00001000
+    .db 0b01111000
+    .db 0b00000000
+    .db 0b01111000
+    .db 0b00110000
+    .db 0b00110000
+    .db 0b00110000
+
 
 .org 800h    
 parts:
