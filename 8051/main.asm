@@ -77,8 +77,13 @@ checkinp:
         sjmp donecheck
         moveleft:
         inc 41h
+        lcall checkcollision
+        jb 41h, undoleft
         lcall draw
         sjmp donecheck
+        undoleft:
+            dec 41h
+            sjmp donecheck
     
     checkright:
         mov A, 41h
@@ -86,15 +91,27 @@ checkinp:
         sjmp donecheck
         moveright:
         dec 41h
+        lcall checkcollision
+        jb 41h, undoright
         lcall draw
         sjmp donecheck
+        undoright:
+            inc 41h
+            sjmp donecheck
     
     checkrot:
+        mov R2, 40h
         mov R0, #40h
         mov @R0, 64h
         lcall getpart
+        lcall checkcollision
+        jb 41h, undorot
         lcall draw
         sjmp donecheck
+        undorot:
+            mov 40h, R2
+            lcall getpart
+            sjmp donecheck
     
     notpressed:
         clr 40h
